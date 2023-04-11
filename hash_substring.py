@@ -27,7 +27,7 @@ def get_occurrences(pattern, text):
     occurances = []
     sakums = 0
     while True:
-        sakums = text.find(patters,sakums)
+        sakums = text.find(pattern,sakums)
         if sakums == -1:
             break
         occurances.append(sakums)
