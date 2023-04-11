@@ -15,15 +15,11 @@ def read_input():
     return pattern, text
     
 
- 
-    #return (input().rstrip(), input().rstrip())
-
 def print_occurrences(output):
   
     print(' '.join(map(str, output)))
 
 def get_occurrences(pattern, text):
-   
     occurances = []
     sakums = 0
     while True:
@@ -32,9 +28,9 @@ def get_occurrences(pattern, text):
             break
         occurances.append(sakums)
         sakums +=1
-        return occurances
+    return occurances
  
-    #return [0]
+
 
 if __name__ == '__main__':
     print_occurrences(get_occurrences(*read_input()))
