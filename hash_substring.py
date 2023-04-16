@@ -10,7 +10,7 @@ def print_occurrences(occurrences):
     if occurrences:
         print(' '.join(map(str, occurrences)))
     else:
-        print(-1)
+        return
 
     
 
