@@ -1,7 +1,11 @@
 def read_input():
     print("Ievadīt tikai i vai f")
     while True:
-        ievade = input("i vai f")
+        try:
+            ievade = input("i vai f")
+            except EOFError:
+                return None, None
+                
         if ievade == '':
             continue
         elif ievade == 'i':
