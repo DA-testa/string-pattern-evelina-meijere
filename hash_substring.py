@@ -33,7 +33,7 @@ def print_occurrences(output):
     if not occurrences:
         print("Nav")
     else:
-        print(' '.join(map(str, output)))
+        print(' '.join(map(str, occurrences)))
 
 def get_occurrences(pattern, text):
     if pattern is None or text is None:
