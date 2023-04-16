@@ -31,19 +31,19 @@ def get_occurrences():
         string = input_string[1]
         substring = input_string[2]
         indices = []
-        for  i in range(len(string) - len(substring)+1):
+        for i in range(len(string) - len(substring) + 1):
             if string[i:i+len(substring)] == substring:
                 indices.append(i)
         if indices:
             print(' '.join(str(i) for i in indices))
         else:
             print('')
-        elif input_string[0] == 'F':
-            string = input_string[1]
-            for i in range(len(string)):
-                if string[i].isdigit() and int(string[i]) % 2 == 1:
-                    print(i**2,end=' ')
-            print('')
+    elif input_string[0] == 'F':
+        string = input_string[1]
+        for i in range(len(string)):
+            if string[i].isdigit() and int(string[i]) % 2 == 1:
+                print(i**2, end=' ')
+        print('')
 if __name__ == '__main__':
     pattern, text = read_input()
     if pattern and text:
