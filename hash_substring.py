@@ -57,33 +57,20 @@ def precompute_hashes(text, pattern_length, p, x):
         hashes[i] = pre_hash % p
     return hashes
 
-def find_substring(input_string):
-    if input_string[0] == 'I':
-        string = input_string[1]
-        substring = input_string[2]
-        indices = []
-        for i in range(len(string) - len(substring) + 1):
-            if string[i:i+len(substring)] == substring:
-                indices.append(i)
-        if indices:
-            print(' '.join(str(i) for i in indices))
-        else:
-            print('')
-    elif input_string[0] == 'F':
-        filename = input_string[1]
-        with open(filename) as file:
-            string = file.readline().rstrip()
-            substring = file.readline().rstrip()
-        indices = []
-        for i in range(len(string) - len(substring) + 1):
-            if string[i:i+len(substring)] == substring:
-                indices.append(i)
-        if indices:
-            print(' '.join(str(i) for i in indices))
-        else:
-            print('')
+def find_substring(s):
+    n = len(s)
+    indexes = []
+    for i in range(n):
+        for j in range(i+1, n+1):
+            if s[i:j] == s[j:j+i-i%n]:
+                indexes.append(i)
+                break
+    if not indexes:
+        print(-1)
     else:
-        print('')
+        print(" ".join(str(index) for index in indexes))
+
+find_substring(input().rstrip().split())
 
 if __name__ == '__main__':
     pattern, text = read_input()
