@@ -9,8 +9,8 @@ def read_input():
         cels = './tests/06'
         try:
             with open(cels, mode="r")as f:
-            pattern = f.readline().strip()
-            text = f.readline().strip()
+                pattern = f.readline().strip()
+                text = f.readline().strip()
         except Exception as y:
             print("kluda:", str(y))
             return
