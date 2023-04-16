@@ -1,5 +1,3 @@
-# python3
-
 def read_input():
     ievade = input("i vai f")
     if ievade == 'i':
@@ -17,10 +15,18 @@ def read_input():
     
 
 def print_occurrences(output):
+    if output is None:
+        print("Nav")
+        return
+    if not isinstance(output,list):
+        print("Nepareizs izvades tips")
+        return
   
     print(' '.join(map(str, output)))
 
 def get_occurrences(pattern, text):
+    if pattern is None or text is None:
+        return []
     occurances = []
     pattern_length = len(pattern)
     text_length = len(text)
