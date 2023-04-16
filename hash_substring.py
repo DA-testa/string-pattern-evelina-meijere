@@ -3,22 +3,22 @@ PRIME = 101
 def read_input():
     while True:
         try:
-            ievade = sys.stdin.readline().rstrip()
+            ievade = input().strip()
         except EOFError:
             return None, None
 
         if ievade == '':
             continue
         elif ievade == 'i':
-            pattern = sys.stdin.readline().rstrip()
-            text = sys.stdin.readline().rstrip()
+            pattern = input().strip()
+            text = input().strip()
             return pattern, text
         elif ievade == 'f':
-            filename = sys.stdin.readline().rstrip()
+            filename = input().strip()
             try:
-                with open(filename,'r')as g:
-                    pattern = g.readline().rstrip()
-                    text = g.readline().rstrip()
+                with open(filename,'r')as f:
+                    pattern = f.readline().strip()
+                    text = f.readline().strip()
                 return pattern, text
             except IOError:
                 print("Faila nav")
@@ -27,22 +27,12 @@ def read_input():
     
 
 def print_occurrences(output):
-    if not output:
-        print("Nav")
-        return
-    if not isinstance(output,list):
-        print("Nepareizs izvades tips")
-        return
-
-    occurrences = get_occurrences(output[0], output[1])
-    if not occurrences:
-        print("Nav")
-    else:
+    if occurrences:
         print(' '.join(map(str, occurrences)))
+    else:
+        print("Nav")
 
 def get_occurrences(pattern, text):
-    if pattern is None or text is None:
-        return []
     occurrences = []
     pattern_length = len(pattern)
     text_length = len(text)
@@ -71,5 +61,7 @@ def get_occurrences(pattern, text):
            
     return occurrences
 if __name__ == '__main__':
-    print_occurrences(get_occurrences(*read_input()))
+    pattern, tex = read_input()
+    occurrences = get_occurrences(pattern,text)
+    print_occurrences(occurrences)
 
