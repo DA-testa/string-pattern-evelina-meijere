@@ -15,8 +15,6 @@ def print_occurrences(occurrences):
 
 def get_occurrences(pattern, text):
     occurrences = []
-    if pattern is None or text is None:
-        return occurrences
     pattern_length = len(pattern)
     text_length = len(text)
     if pattern_length > text_length:
