@@ -30,8 +30,8 @@ def print_occurrences(output):
         print("Nepareizs izvades tips")
         return
 
-    occurrances = get_occurrences(output[0], output[1])
-    if not occurrances:
+    occurrences = get_occurrences(output[0], output[1])
+    if not occurrences:
         print("Nav")
     else:
         print(' '.join(map(str, output)))
