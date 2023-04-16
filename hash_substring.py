@@ -30,7 +30,7 @@ def print_occurrences(output):
         print("Nepareizs izvades tips")
         return
 
-    occurances = get_occurrences(output[0], output[1])
+    occurrances = get_occurrences(output[0], output[1])
   
     print(' '.join(map(str, output)))
 
