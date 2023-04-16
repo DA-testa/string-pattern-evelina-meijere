@@ -3,9 +3,12 @@ import sys
 PRIME = 101
 
 def read_input():
-    pattern = input().strip()
-    text = input().strip()
-    return pattern, text
+    try:
+        pattern = input().strip()
+        text = input().strip()
+        return pattern, text
+    except EOFError:
+        return "", ""
 
 def print_occurrences(occurrences):
     if occurrences:
@@ -28,7 +31,7 @@ def get_occurrences(pattern, text):
         text_hash = (text_hash * PRIME + ord(text[i])) % sys.maxsize
         highest_pow = (highest_pow * PRIME) % sys.maxsize
         
-    if pattern_hash == text_hash and text[:pattern_length] == pattern:
+    if pattern_hash == text_hash and text[:pattern_length].lower() == pattern.lower():
         occurrences.append(0)
 
     for i in range(1, text_length - pattern_length + 1):
@@ -44,6 +47,4 @@ if __name__ == '__main__':
     pattern, text = read_input()
     occurrences = get_occurrences(pattern, text)
     print_occurrences(occurrences)
-
-    
 
