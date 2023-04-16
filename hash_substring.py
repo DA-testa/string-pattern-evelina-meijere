@@ -1,6 +1,4 @@
 
-
-
 def read_input():
     ievade = input().rstrip()
     if ievade == 'i':
@@ -10,7 +8,7 @@ def read_input():
         filename = input().rstrip()
         with open(filename) as file:
             pattern = file.readline().rstrip()
-            text = file.readline().rstrip
+            text = file.readline().rstrip()
     return pattern, text
 def print_occurrences(occurrences):
     print(" ".join(map(str, occurrences)))
@@ -44,7 +42,7 @@ def precompute_hashes(text, pattern_length, p, x):
         pre_hash = x * hashes[i+1] + ord(text[i]) - y * ord(text[i+pattern_length])
         hashes[i] = pre_hash % p
     return hashes
-    
+
 if __name__ == '__main__':
     pattern, text = read_input()
     occurrences = get_occurrences(pattern, text)
