@@ -48,13 +48,13 @@ def get_occurrences(pattern, text):
     if pattern_length > text_length:
         return occurrences
  
-    pattern_hash = sum(ord(pattern[o])for o in range (pattern_length))
-    text_hash = sum(ord(text[o])for o in range(pattern_length))
+    pattern_hash = sum(ord(pattern[o])*(101 ** o)for o in range (pattern_length))
+    text_hash = sum(ord(text[o])*(101 ** o)for o in range(pattern_length))
     if pattern_hash == text_hash and text[:pattern_length] == pattern:
         occurrences.append(0)
 
     for o in range(1, text_length - pattern_length +1):
-        text_hash = text_hash  - ord(text[o -1]) + ord(text[o+pattern_length-1])
+        text_hash = text_hash  - ord(text[o -1])*(101 **(pattern_length-1)) + ord(text[o+pattern_length-1])
         if pattern_hash == text_hash and text[o:o+pattern_length]==pattern:
             occurrences.append(o)
            
