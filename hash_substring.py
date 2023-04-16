@@ -47,6 +47,9 @@ def precompute_hashes(text, pattern_length, p, x):
     return hashes
 
 if __name__ == '__main__':
-    pattern, text = read_input()
-    occurrences = get_occurrences(pattern, text)
-    print_occurrences(occurrences)
+    try:
+        pattern, text = read_input()
+        occurrences = get_occurrences(pattern, text)
+        print_occurrences(occurrences)
+    except Exception as e:
+        print(f"Error: {e}")
