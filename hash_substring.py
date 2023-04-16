@@ -1,4 +1,4 @@
-
+import os
 def read_input():
     ievade = input().rstrip()
     if ievade == 'i':
@@ -6,6 +6,9 @@ def read_input():
         text = input().rstrip()
     else:
         filename = input().rstrip()
+        if not os.pat.exists(filename):
+            print(f"Error")
+            return "",""
         with open(filename) as file:
             pattern = file.readline().rstrip()
             text = file.readline().rstrip()
