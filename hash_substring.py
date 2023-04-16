@@ -4,20 +4,20 @@ def read_input():
         try:
             ievade = input("i vai f")
         except EOFError:
-            return None, None
+            return [], []
 
         if ievade == '':
             continue
         elif ievade == 'i':
             pattern = input("pattern?: ")
             text = input("text?: ")
-            return pattern, text
+            return [pattern, text]
         elif ievade == 'f':
             filename = input("faila nosaukums?: ")
             with open(filename,'r')as g:
                 pattern = g.readline().rstrip()
                 text = g.readline().rstrip()
-            return pattern, text
+            return [pattern, text]
         else:
             print("Nepareiza ievade tikai 'i' vai 'f'")
     
