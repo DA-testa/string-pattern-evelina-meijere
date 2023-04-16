@@ -19,7 +19,7 @@ def read_input():
                     text = g.readline().rstrip()
                 return pattern, text
             except IOError:
-            print("Faila nav")
+                print("Faila nav")
         else:
             print("Invalid input")
     
