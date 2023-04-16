@@ -1,14 +1,13 @@
 import sys
 PRIME = 101
 def read_input():
-    pattern = input().strip()
-    text = input().strip()
+    pattern = input().strip("\r\n")
+    text = input().strip("\r\n")
     return pattern, text
     
 
 def print_occurrences(occurrences):
-
-        print(' '.join(map(str, occurrences)))
+    print(' '.join(map(str, occurrences)))
     
 
 def get_occurrences(pattern, text):
@@ -32,15 +31,14 @@ def get_occurrences(pattern, text):
         occurrences.append(0)
 
     for i in range(1, text_length - pattern_length + 1):
-        
         text_hash = (text_hash - ord(text[i - 1]) * highest_pow) % sys.maxsize
         text_hash = (text_hash * PRIME + ord(text[i + pattern_length - 1])) % sys.maxsize
-
         if pattern_hash == text_hash and text[i:i+pattern_length]==pattern:
             occurrences.append(i)
-
            
     return occurrences
+
+
 if __name__ == '__main__':
     pattern, text = read_input()
     occurrences = get_occurrences(pattern,text)
