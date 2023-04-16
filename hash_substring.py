@@ -29,6 +29,8 @@ def print_occurrences(output):
     if not isinstance(output,list):
         print("Nepareizs izvades tips")
         return
+
+    occurances = get_occurrences(*output)
   
     print(' '.join(map(str, output)))
 
