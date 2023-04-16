@@ -25,38 +25,26 @@ def read_input():
 def print_occurrences(occurrences):
     print(" ".join(map(str, occurrences)))
   
-def get_occurrences(pattern, text):
-    occurrences = []
-    p = 1000000007
-    x = 263
-    p_hash = hash(pattern, p, x)
-    hashes = precompute_hashes(text, len(pattern), p, x)
-    for i in range(len(text) - len(pattern) + 1):
-        if p_hash != hashes[i]:
-            continue
-        if text[i:i+len(pattern)] == pattern:
-            occurrences.append(i)
-    return occurrences
-def hash(s, p, x):
-    h = 0
-    for t in reversed(s):
-        h = (h * x + ord(t)) % p 
-    return h  
-
-def precompute_hashes(text, pattern_length, p, x):
-    hashes = [0] * (len(text) - pattern_length + 1)
-    s = text[len(text) - pattern_length:]
-    hashes[len(text) - pattern_length] = hash(s, p, x)
-    y = 1
-    for i in range(pattern_length):
-        y = (y * x) % p 
-    for i in range(len(text) - pattern_length - 1, -1, -1):
-        pre_hash = x * hashes[i+1] + ord(text[i]) - y * ord(text[i+pattern_length])
-        hashes[i] = pre_hash % p
-    return hashes
-
+def get_occurrences():
+    input_string = input().split('\r\n')
+    if input_string[0] == 'I':
+        string = input_string[1]
+        substring = input_string[2]
+        indices = []
+        for  i in range(len(string) - len(substring)+1):
+            if string[i:i+len(substring)] == substring:
+                indices.append(i)
+        if indices:
+            print(' '.join(str(i) for i in indices))
+        else:
+            print('')
+        elif input_string[0] == 'F':
+            string = input_string[1]
+            for i in range(len(string)):
+                if string[i].isdigit() and int(string[i]) % 2 == 1:
+                    print(i**2,end=' ')
+            print('')
 if __name__ == '__main__':
     pattern, text = read_input()
     if pattern and text:
-        occurrences = get_occurrences(pattern, text)
-        print_occurrences(occurrences)
+        get_occurrences()
