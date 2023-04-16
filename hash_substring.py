@@ -1,4 +1,5 @@
 import sys
+PRIME = 101
 def read_input():
     while True:
         try:
@@ -60,7 +61,7 @@ def get_occurrences(pattern, text):
         occurrences.append(0)
 
     for i in range(1, text_length - pattern_length + 1):
-        # compute the hash value of the next substring using the rolling hash function
+        
         text_hash = (text_hash - ord(text[i - 1]) * highest_pow) % sys.maxsize
         text_hash = (text_hash * PRIME + ord(text[i + pattern_length - 1])) % sys.maxsize
 
