@@ -1,8 +1,8 @@
 import sys
 PRIME = 101
 def read_input():
-    pattern = input().strip("\r\n")
-    text = input().strip("\r\n")
+    pattern = input().strip()
+    text = input().strip()
     return pattern, text
     
 
@@ -41,6 +41,6 @@ def get_occurrences(pattern, text):
 
 if __name__ == '__main__':
     pattern, text = read_input()
-    occurrences = get_occurrences(pattern,text)
-    print_occurrences(occurrences)
+    get_occurrences(pattern,text)
+    
 
