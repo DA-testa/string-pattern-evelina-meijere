@@ -1,18 +1,19 @@
+import sys
 def read_input():
     while True:
         try:
-            ievade = input("Enter 'i' for interactive input or 'f' for file input: ")
+            ievade = sys.stdin.readline().rstrip()
         except EOFError:
             return None, None
 
         if ievade == '':
             continue
         elif ievade == 'i':
-            pattern = input("pattern?: ")
-            text = input("text?: ")
+            pattern = sys.stdin.readline().rstrip()
+            text = sys.stdin.readline().rstrip()
             return pattern, text
         elif ievade == 'f':
-            filename = input("file name?: ")
+            filename = sys.stdin.readline().rstrip()
             try:
                 with open(filename,'r')as g:
                     pattern = g.readline().rstrip()
