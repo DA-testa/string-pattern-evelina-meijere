@@ -7,7 +7,7 @@ def read_input():
     
 
 def print_occurrences(occurrences):
-    print(' '.join(map(str, occurrences)))
+    print(' '.join(str(i) for i in occurrences))
     
 
 def get_occurrences(pattern, text):
@@ -41,6 +41,7 @@ def get_occurrences(pattern, text):
 
 if __name__ == '__main__':
     pattern, text = read_input()
-    get_occurrences(pattern,text)
+    occurrences = get_occurrences(pattern, text)
+    print_occurrences(occurrences)
     
 
