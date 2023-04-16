@@ -13,7 +13,7 @@ def read_input():
             text = g.readline().rstrip()
         return pattern, text
     else:
-        print("Nepareiza ievade tikai 'i' vai 'f'")
+         raise ValueError("Nepareiza ievade tikai 'i' vai 'f'")
     
 
 def print_occurrences(output):
@@ -33,7 +33,7 @@ def get_occurrences(pattern, text):
         if pattern_hash == text_hash and text[o:o+pattern_hash] == pattern:
             occurances.append(o)
         if o < text_length - pattern_length:
-            text_hash = text_hash - ord(text[o]) + ord(text[i+p_len])
+            text_hash = text_hash - ord(text[o]) + ord(text[i+pattern_length])
     return occurances
 
 
