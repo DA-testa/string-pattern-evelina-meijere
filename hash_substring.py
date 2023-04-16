@@ -5,14 +5,15 @@ def read_input():
     if ievade == 'i':
         pattern = input("pattern?: ")
         text = input("text?: ")
+        return pattern, text
     elif ievade == 'f':
         filename = input("faila nosaukums?: ")
         with open(filename,'r')as g:
             pattern = g.readline().rstrip()
             text = g.readline().rstrip()
+        return pattern, text
     else:
-        raise ValueError("nepareiza ievade")
-    return pattern, text
+        print("Nepareiza ievade tikai 'i' vai 'f'")
     
 
 def print_occurrences(output):
