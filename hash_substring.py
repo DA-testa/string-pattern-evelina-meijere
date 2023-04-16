@@ -2,7 +2,9 @@ def read_input():
     print("Ievadīt tikai i vai f")
     while True:
         ievade = input("i vai f")
-        if ievade == 'i':
+        if ievade == '':
+            continue
+        elif ievade == 'i':
             pattern = input("pattern?: ")
             text = input("text?: ")
             return pattern, text
