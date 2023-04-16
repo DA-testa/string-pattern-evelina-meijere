@@ -28,7 +28,7 @@ def alg(pattern,text,t):
         if x == d and pattern == text[i:i+U]:
             rez.append(i)
         if i<N-U:
-            d = (e(d-ord(text[i]) r)+ ord(text[i+U]))%g
+            d = (e(d-ord(text[i]), r)+ ord(text[i+U]))%g
         return rez
 if __name__ == '__main__':
     print_occurrences(get_occurrences(*read_input()))
