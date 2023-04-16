@@ -4,15 +4,19 @@ def read_input():
     if ievade == 'i':
         pattern = input().rstrip()
         text = input().rstrip()
-    else:
+    elif ievade == 'f':
         filename = input().rstrip()
         if not os.path.exists(filename):
-            print(f"Error")
+            print("Error")
             return "",""
         with open(filename) as file:
             pattern = file.readline().rstrip()
             text = file.readline().rstrip()
+    else:
+        print("Error")
+        return "",""
     return pattern, text
+
 def print_occurrences(occurrences):
     print(" ".join(map(str, occurrences)))
   
@@ -47,9 +51,7 @@ def precompute_hashes(text, pattern_length, p, x):
     return hashes
 
 if __name__ == '__main__':
-    try:
-        pattern, text = read_input()
+    pattern, text = read_input()
+    if pattern and text:
         occurrences = get_occurrences(pattern, text)
         print_occurrences(occurrences)
-    except Exception as e:
-        print(f"Error: {e}")
