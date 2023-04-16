@@ -1,50 +1,50 @@
 
 
-import sys
-
-PRIME = 101
 
 def read_input():
-    try:
-        pattern = input().strip()
-        text = input().strip()
-        return pattern, text
-    except EOFError:
-        return "", ""
-
-def print_occurrences(occurrences):
-    if occurrences:
-        print(' '.join(map(str, occurrences)))
+    ievade = input().rstrip()
+    if ievade == 'i':
+        pattern = input().rstrip()
+        text = input().rstrip()
     else:
-        print("-1")
-
+        filename = input().rstrip()
+        with open(filename) as file:
+            pattern = file.readline().rstrip()
+            text = file.readline().rstrip
+    return pattern, text
+def print_occurrences(occurrences):
+    print(" ".join(map(str, occurrences)))
+  
 def get_occurrences(pattern, text):
     occurrences = []
-    pattern_length = len(pattern)
-    text_length = len(text)
-    if pattern_length > text_length:
-        return occurrences
-    
-    pattern_hash = 0
-    text_hash = 0
-    highest_pow = 1
-    for i in range(pattern_length):
-        pattern_hash = (pattern_hash * PRIME + ord(pattern[i])) % sys.maxsize
-        text_hash = (text_hash * PRIME + ord(text[i])) % sys.maxsize
-        highest_pow = (highest_pow * PRIME) % sys.maxsize
-        
-    if pattern_hash == text_hash and text[:pattern_length].lower() == pattern.lower():
-        occurrences.append(0)
-
-    for i in range(1, text_length - pattern_length + 1):
-        old_char = text[i-1]
-        new_char = text[i+pattern_length-1]
-        text_hash = ((text_hash - ord(old_char) * highest_pow) * PRIME + ord(new_char)) % sys.maxsize
-        if pattern_hash == text_hash and text[i:i+pattern_length].lower() == pattern.lower():
+    p = 1000000007
+    x = 263
+    p_hash = hash(pattern, p,x)
+    hashes = precompute_hashes(text,len(pattern), p, x)
+    for i in range (len(text)-len(pattern)+1):
+        if p_hash != hashes[i]:
+            continue
+        if text[i:i+len(pattern)] == pattern:
             occurrences.append(i)
-
     return occurrences
+def hash(s, p, x):
+    h = 0
+    for t in reversed(s):
+        h = (h* x + ord(t)) % p 
+    return h 
 
+def precompute_hashes(text, pattern_length, p, x):
+    hashes  = [0] * (len(text) - pattern_length + 1)
+    s = text[len(text) - pattern_length:]
+    hashes[len(text) - pattern_length] = hash (s,p,x)
+    y = 1
+    for i in range(pattern_length):
+        y = (y * x) % p 
+    for i in range(len(text) - pattern_length -1, -1, -1):
+        pre_hash = x * hashes[i+1] + ord(text[i]) - y * ord(text[i+pattern_length])
+        hashes[i] = pre_hash % p
+    return hashes
+    
 if __name__ == '__main__':
     pattern, text = read_input()
     occurrences = get_occurrences(pattern, text)
