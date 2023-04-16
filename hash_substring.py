@@ -48,15 +48,25 @@ def get_occurrences(pattern, text):
     if pattern_length > text_length:
         return occurrences
  
-    pattern_hash = sum(ord(pattern[o])*(101 ** o)for o in range (pattern_length))
-    text_hash = sum(ord(text[o])*(101 ** o)for o in range(pattern_length))
+    pattern_hash = 0
+    text_hash = 0
+    highest_pow = 1
+    for i in range(pattern_length):
+        pattern_hash = (pattern_hash * PRIME + ord(pattern[i])) % sys.maxsize
+        text_hash = (text_hash * PRIME + ord(text[i])) % sys.maxsize
+        highest_pow = (highest_pow * PRIME) % sys.maxsize
+
     if pattern_hash == text_hash and text[:pattern_length] == pattern:
         occurrences.append(0)
 
-    for o in range(1, text_length - pattern_length +1):
-        text_hash = text_hash  - ord(text[o -1])*(101 **(pattern_length-1)) + ord(text[o+pattern_length-1])
-        if pattern_hash == text_hash and text[o:o+pattern_length]==pattern:
-            occurrences.append(o)
+    for i in range(1, text_length - pattern_length + 1):
+        # compute the hash value of the next substring using the rolling hash function
+        text_hash = (text_hash - ord(text[i - 1]) * highest_pow) % sys.maxsize
+        text_hash = (text_hash * PRIME + ord(text[i + pattern_length - 1])) % sys.maxsize
+
+        if pattern_hash == text_hash and text[i:i+pattern_length]==pattern:
+            occurrences.append(i)
+
            
     return occurrences
 if __name__ == '__main__':
