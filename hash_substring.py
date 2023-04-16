@@ -1,17 +1,19 @@
 def read_input():
-    ievade = input("i vai f")
-    if ievade == 'i':
-        pattern = input("pattern?: ")
-        text = input("text?: ")
-        return pattern, text
-    elif ievade == 'f':
-        filename = input("faila nosaukums?: ")
-        with open(filename,'r')as g:
-            pattern = g.readline().rstrip()
-            text = g.readline().rstrip()
-        return pattern, text
-    else:
-         raise ValueError("Nepareiza ievade tikai 'i' vai 'f'")
+    print("Ievadīt tikai i vai f")
+    while True:
+        ievade = input("i vai f")
+        if ievade == 'i':
+            pattern = input("pattern?: ")
+            text = input("text?: ")
+            return pattern, text
+        elif ievade == 'f':
+            filename = input("faila nosaukums?: ")
+            with open(filename,'r')as g:
+                pattern = g.readline().rstrip()
+                text = g.readline().rstrip()
+            return pattern, text
+        else:
+            print("Nepareiza ievade tikai 'i' vai 'f'")
     
 
 def print_occurrences(output):
