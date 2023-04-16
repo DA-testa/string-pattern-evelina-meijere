@@ -23,7 +23,7 @@ def read_input():
     
 
 def print_occurrences(output):
-    if output is None:
+    if not output:
         print("Nav")
         return
     if not isinstance(output,list):
