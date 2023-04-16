@@ -21,15 +21,19 @@ def print_occurrences(output):
 
 def get_occurrences(pattern, text):
     occurances = []
-    sakums = 0
-    while True:
-        sakums = text.find(pattern,sakums)
-        if sakums == -1:
-            break
-        occurances.append(sakums)
-        sakums +=1
+    pattern_length = len(pattern)
+    text_length = len(text)
+    if pattern_length > text_length:
     return occurances
  
+    pattern_hash = sum(ord(pattern[o])for o in range (pattern_length))
+    text_hash = sum(ord(text[o])for o in range(text_length))
+    for o in range(text_length - pattern_length +1):
+        if pattern_hash == text_hash and text[o:o+pattern_hash] == pattern:
+            occurances.append(o)
+        if o < text_length - pattern_length:
+            text_hash = text_hash - ord(text[o]) + ord(text[i+p_len])
+    return occurances
 
 
 if __name__ == '__main__':
