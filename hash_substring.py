@@ -1,31 +1,9 @@
 import sys
 PRIME = 101
 def read_input():
-    while True:
-        try:
-            ievade = input().strip()
-        except EOFError:
-            return None, None
-
-        if ievade == '':
-            continue
-        elif ievade == 'i':
-            pattern = input().strip()
-            text = input().strip()
-            return pattern, text
-        elif ievade == 'f':
-            filename = input().strip()
-            try:
-                with open(filename,'r')as f:
-                    pattern = f.readline().strip()
-                    text = f.readline().strip()
-                return pattern, text
-            except IOError:
-                print("Faila nav")
-                continue
-        else:
-            print("Invalid input")
-            continue
+    pattern = input().strip()
+    text = input().strip()
+    return pattern, text
     
 
 def print_occurrences(occurrences):
