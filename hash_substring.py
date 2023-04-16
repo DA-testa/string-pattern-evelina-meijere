@@ -52,7 +52,7 @@ def get_occurrences(pattern, text):
             occurrences.append(o)
         if o < text_length - pattern_length:
             text_hash = text_hash - ord(text[o]) + ord(text[o+pattern_length])
-    return occurences
+    return occurrences
 
 
 if __name__ == '__main__':
