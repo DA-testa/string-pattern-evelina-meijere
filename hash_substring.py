@@ -19,7 +19,7 @@ def get_occurrences(pattern, text):
     text_length = len(text)
     if pattern_length > text_length:
         return occurrences
- 
+    
     pattern_hash = 0
     text_hash = 0
     highest_pow = 1
@@ -27,23 +27,23 @@ def get_occurrences(pattern, text):
         pattern_hash = (pattern_hash * PRIME + ord(pattern[i])) % sys.maxsize
         text_hash = (text_hash * PRIME + ord(text[i])) % sys.maxsize
         highest_pow = (highest_pow * PRIME) % sys.maxsize
-
+        
     if pattern_hash == text_hash and text[:pattern_length] == pattern:
         occurrences.append(0)
 
     for i in range(1, text_length - pattern_length + 1):
-        text_hash = (text_hash - ord(text[i - 1]) * highest_pow) % sys.maxsize
-        text_hash = (text_hash * PRIME + ord(text[i + pattern_length - 1])) % sys.maxsize
+        old_char = text[i-1]
+        new_char = text[i+pattern_length-1]
+        text_hash = ((text_hash - ord(old_char) * highest_pow) * PRIME + ord(new_char)) % sys.maxsize
         if pattern_hash == text_hash and text[i:i+pattern_length].lower() == pattern.lower():
             occurrences.append(i)
-           
+
     return occurrences
 
 if __name__ == '__main__':
     pattern, text = read_input()
     occurrences = get_occurrences(pattern, text)
     print_occurrences(occurrences)
-
 
     
 
