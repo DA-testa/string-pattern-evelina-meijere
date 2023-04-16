@@ -70,12 +70,20 @@ def find_substring(input_string):
         else:
             print('')
     elif input_string[0] == 'F':
-        string = input_string[1]
-        for i in range(len(string)):
-            if string[i].isdigit() and int(string[i]) % 2 == 1:
-                print(i**2, end=' ')
+        filename = input_string[1]
+        with open(filename) as file:
+            string = file.readline().rstrip()
+            substring = file.readline().rstrip()
+        indices = []
+        for i in range(len(string) - len(substring) + 1):
+            if string[i:i+len(substring)] == substring:
+                indices.append(i)
+        if indices:
+            print(' '.join(str(i) for i in indices))
+        else:
+            print('')
+    else:
         print('')
-
 
 if __name__ == '__main__':
     pattern, text = read_input()
