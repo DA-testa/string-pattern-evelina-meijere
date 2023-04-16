@@ -3,9 +3,9 @@ def read_input():
     while True:
         try:
             ievade = input("i vai f")
-            except EOFError:
-                return None, None
-                
+        except EOFError:
+            return None, None
+
         if ievade == '':
             continue
         elif ievade == 'i':
