@@ -22,11 +22,13 @@ def read_input():
                 return pattern, text
             except IOError:
                 print("Faila nav")
+                continue
         else:
             print("Invalid input")
+            continue
     
 
-def print_occurrences(output):
+def print_occurrences(occurrences):
     if occurrences:
         print(' '.join(map(str, occurrences)))
     else:
