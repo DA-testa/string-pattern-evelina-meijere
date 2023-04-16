@@ -23,7 +23,7 @@ def read_input():
     return pattern, text
 
 def print_occurrences(occurrences):
-    print(" ".join(map(str, occurrences)))
+    print(" ".join(str(i) for i in occurrences))
   
 def get_occurrences():
     input_string = input().split('\r\n')
