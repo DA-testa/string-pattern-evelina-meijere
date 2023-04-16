@@ -37,7 +37,7 @@ def get_occurrences(pattern, text):
     for i in range(1, text_length - pattern_length + 1):
         text_hash = (text_hash - ord(text[i - 1]) * highest_pow) % sys.maxsize
         text_hash = (text_hash * PRIME + ord(text[i + pattern_length - 1])) % sys.maxsize
-        if pattern_hash == text_hash and text[i:i+pattern_length]==pattern:
+        if pattern_hash == text_hash and text[i:i+pattern_length].lower()==pattern:
             occurrences.append(i)
            
     return occurrences
