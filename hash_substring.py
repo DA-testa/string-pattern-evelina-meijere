@@ -4,7 +4,7 @@ def read_input():
         try:
             ievade = input("i vai f")
         except EOFError:
-            return [], []
+            return []
 
         if ievade == '':
             continue
