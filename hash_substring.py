@@ -13,10 +13,13 @@ def read_input():
             return pattern, text
         elif ievade == 'f':
             filename = input("file name?: ")
-            with open(filename,'r')as g:
-                pattern = g.readline().rstrip()
-                text = g.readline().rstrip()
-            return pattern, text
+            try:
+                with open(filename,'r')as g:
+                    pattern = g.readline().rstrip()
+                    text = g.readline().rstrip()
+                return pattern, text
+            except IOError:
+            print("Faila nav")
         else:
             print("Invalid input")
     
