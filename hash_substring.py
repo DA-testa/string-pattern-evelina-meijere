@@ -24,7 +24,7 @@ def print_occurrences(output):
   
 def get_occurrences(pattern, text):
  lengthp = len(pattern)
- lengtht=lne(text)
+ lengtht=len(text)
  hashp=hash(pattern)
  hasht=hash(text[:lengthp])
  occurrences = []
