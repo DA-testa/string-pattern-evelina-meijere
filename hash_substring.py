@@ -1,7 +1,7 @@
 def read_input():
     while True:
         try:
-            ievade = input("i/f:")
+            ievade = input("Enter 'i' for interactive input or 'f' for file input: ")
         except EOFError:
             return None, None
 
