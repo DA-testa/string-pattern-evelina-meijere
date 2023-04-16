@@ -31,7 +31,9 @@ def print_occurrences(output):
         return
 
     occurrances = get_occurrences(output[0], output[1])
-  
+    if not occurrances:
+        print("Nav")
+    else:
     print(' '.join(map(str, output)))
 
 def get_occurrences(pattern, text):
