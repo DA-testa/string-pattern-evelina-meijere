@@ -6,7 +6,7 @@ def read_input():
         text = input().rstrip()
     else:
         filename = input().rstrip()
-        if not os.pat.exists(filename):
+        if not os.path.exists(filename):
             print(f"Error")
             return "",""
         with open(filename) as file:
