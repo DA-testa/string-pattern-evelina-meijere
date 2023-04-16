@@ -1,5 +1,4 @@
 
-
 def read_input():
     ievade = input().strip()
     if "I" in ievade:
@@ -33,6 +32,6 @@ def get_occurrences(pattern, text):
         occurrences.append(i)
     if(i<lengtht-lengthp):
         hasht=hash(text[i+1: i+lengthp+1])
-return occurrences
+ return occurrences
 if __name__ == '__main__':
     print_occurrences(get_occurrences(*read_input()))
