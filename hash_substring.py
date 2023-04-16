@@ -1,11 +1,10 @@
 import os
 def read_input():
-    ievade = input().rstrip()
-    if ievade == 'i':
-        pattern = input().rstrip()
-        text = input().rstrip()
-    elif ievade == 'f':
-        filename = input().rstrip()
+    ievade, *input_values = input().rstrip().split()
+    if ievade == 'I':
+        pattern, text = input_values
+    elif ievade == 'F':
+        filename, = input_values
         if not os.path.exists(filename):
             print("Error")
             return "",""
@@ -24,9 +23,9 @@ def get_occurrences(pattern, text):
     occurrences = []
     p = 1000000007
     x = 263
-    p_hash = hash(pattern, p,x)
-    hashes = precompute_hashes(text,len(pattern), p, x)
-    for i in range (len(text)-len(pattern)+1):
+    p_hash = hash(pattern, p, x)
+    hashes = precompute_hashes(text, len(pattern), p, x)
+    for i in range(len(text) - len(pattern) + 1):
         if p_hash != hashes[i]:
             continue
         if text[i:i+len(pattern)] == pattern:
@@ -35,17 +34,17 @@ def get_occurrences(pattern, text):
 def hash(s, p, x):
     h = 0
     for t in reversed(s):
-        h = (h* x + ord(t)) % p 
-    return h 
+        h = (h * x + ord(t)) % p 
+    return h  
 
 def precompute_hashes(text, pattern_length, p, x):
-    hashes  = [0] * (len(text) - pattern_length + 1)
+    hashes = [0] * (len(text) - pattern_length + 1)
     s = text[len(text) - pattern_length:]
-    hashes[len(text) - pattern_length] = hash (s,p,x)
+    hashes[len(text) - pattern_length] = hash(s, p, x)
     y = 1
     for i in range(pattern_length):
         y = (y * x) % p 
-    for i in range(len(text) - pattern_length -1, -1, -1):
+    for i in range(len(text) - pattern_length - 1, -1, -1):
         pre_hash = x * hashes[i+1] + ord(text[i]) - y * ord(text[i+pattern_length])
         hashes[i] = pre_hash % p
     return hashes
