@@ -44,7 +44,7 @@ def get_occurrences(pattern, text):
     pattern_hash = sum(ord(pattern[o])for o in range (pattern_length))
     text_hash = sum(ord(text[o])for o in range(text_length))
     for o in range(text_length - pattern_length +1):
-        if pattern_hash == text_hash and text[o:o+pattern_hash] == pattern:
+        if pattern_hash == text_hash and text[o:o+pattern_length] == pattern:
             occurances.append(o)
         if o < text_length - pattern_length:
             text_hash = text_hash - ord(text[o]) + ord(text[i+pattern_length])
