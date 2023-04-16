@@ -2,33 +2,37 @@
 
 def read_input():
     ievade = input().strip()
-    if ievade == "I":
+    if "I" in ievade:
         pattern = input().strip()
         text = input().strip()
-    elif ievade == "F":
-        with open("input.txt", "r")as f:
+    elif "F" in ievade:
+        cels = './tests/06'
+        try:
+            with open(cels, mode="r")as f:
             pattern = f.readline().strip()
             text = f.readline().strip()
+        except Exception as y:
+            print("kluda:", str(y))
+            return
+    else:
+        print("Error")
+        return
     return pattern, text
 
-def print_occurrences(occurrences):
-    print(" ".join(map(str, occurrences)))
+def print_occurrences(output):
+    print(" ".join(map(str, output)))
   
 def get_occurrences(pattern, text):
-    t = 10**9+7
-    return alg(pattern, text, t)
-
-
-def alg(pattern,text,t):
-    U,N,e,g,r,x,d,rez = len(pattern),len(text),256,t,pow(256,len(pattern)-1,t),0,0,[]
-    for i in range(U):
-        x = (x*e+ord(pattern[i]))%g
-        d = (d*e+ord(text[i]))%g
-    for i in range(N-U+1):
-        if x == d and pattern == text[i:i+U]:
-            rez.append(i)
-        if i<N-U:
-            d = (e(d-ord(text[i]), r)+ ord(text[i+U]))%g
-        return rez
+ lengthp = len(pattern)
+ lengtht=lne(text)
+ hashp=hash(pattern)
+ hasht=hash(text[:lengthp])
+ occurrences = []
+ for i in range(lengtht-lengthp + 1):
+    if hasht == hashp and pattern==text[i:i+lengthp]:
+        occurrences.append(i)
+    if(i<lengtht-lengthp):
+        hasht=hash(text[i+1: i+lengthp+1])
+return occurrences
 if __name__ == '__main__':
     print_occurrences(get_occurrences(*read_input()))
