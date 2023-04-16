@@ -39,20 +39,20 @@ def print_occurrences(output):
 def get_occurrences(pattern, text):
     if pattern is None or text is None:
         return []
-    occurances = []
+    occurrences = []
     pattern_length = len(pattern)
     text_length = len(text)
     if pattern_length > text_length:
-        return occurances
+        return occurrences
  
     pattern_hash = sum(ord(pattern[o])for o in range (pattern_length))
     text_hash = sum(ord(text[o])for o in range(text_length))
     for o in range(text_length - pattern_length +1):
         if pattern_hash == text_hash and text[o:o+pattern_length] == pattern:
-            occurances.append(o)
+            occurrences.append(o)
         if o < text_length - pattern_length:
             text_hash = text_hash - ord(text[o]) + ord(text[o+pattern_length])
-    return occurances
+    return occurences
 
 
 if __name__ == '__main__':
