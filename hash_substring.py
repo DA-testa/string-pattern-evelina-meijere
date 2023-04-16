@@ -1,3 +1,5 @@
+
+
 import sys
 
 PRIME = 101
@@ -47,4 +49,3 @@ if __name__ == '__main__':
     pattern, text = read_input()
     occurrences = get_occurrences(pattern, text)
     print_occurrences(occurrences)
-
