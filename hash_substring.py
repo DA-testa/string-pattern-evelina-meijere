@@ -1,8 +1,7 @@
 def read_input():
-    print("Ievadīt tikai i vai f")
     while True:
         try:
-            ievade = input("i vai f")
+            ievade = input("i or f:")
         except EOFError:
             return None, None
 
@@ -13,13 +12,13 @@ def read_input():
             text = input("text?: ")
             return pattern, text
         elif ievade == 'f':
-            filename = input("faila nosaukums?: ")
+            filename = input("file name?: ")
             with open(filename,'r')as g:
                 pattern = g.readline().rstrip()
                 text = g.readline().rstrip()
             return pattern, text
         else:
-            print("Nepareiza ievade tikai 'i' vai 'f'")
+            print("Invalid input")
     
 
 def print_occurrences(output):
