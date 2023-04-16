@@ -1,7 +1,7 @@
 def read_input():
     while True:
         try:
-            ievade = input("i or f:")
+            ievade = input("i/f:")
         except EOFError:
             return None, None
 
