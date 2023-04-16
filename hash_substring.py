@@ -7,10 +7,9 @@ def read_input():
     
 
 def print_occurrences(occurrences):
-    if occurrences:
+
         print(' '.join(map(str, occurrences)))
-    else:
-        print("Nav")
+    
 
 def get_occurrences(pattern, text):
     occurrences = []
