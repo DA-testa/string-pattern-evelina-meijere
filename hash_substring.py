@@ -2,8 +2,14 @@ import os
 def read_input():
     ievade, *input_values = input().rstrip().split()
     if ievade == 'I':
+        if len(input_values) ! = 2:
+            print("Error")
+            return "",""
         pattern, text = input_values
     elif ievade == 'F':
+        if len(input_values) !=1:
+            print("Error")
+            return "",""
         filename, = input_values
         if not os.path.exists(filename):
             print("Error")
